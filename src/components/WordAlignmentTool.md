@@ -61,15 +61,15 @@ const {
   groupsIndex
 } = groupDataHelpers.initializeGroupDataForScripture(bookId, targetBook, toolName, sourceBook, translate)
 const item = groupDataHelpers.findVerseInRefGroupData(groupsData, groupsIndex, 1, 4)
-if (item) {
-  item[FINISHED_KEY] = false
-}
-for (let verse = 1; verse < 25; verse++) {
-  const item = groupDataHelpers.findVerseInRefGroupData(groupsData, groupsIndex, 2, verse)
-  if (item) {
-    item[FINISHED_KEY] = false
-  }
-}
+// if (item) {
+//   item[FINISHED_KEY] = false
+// }
+// for (let verse = 1; verse < 25; verse++) {
+//   const item = groupDataHelpers.findVerseInRefGroupData(groupsData, groupsIndex, 2, verse)
+//   if (item) {
+//     item[FINISHED_KEY] = false
+//   }
+// }
 
 const initialTooleSettings = {
   paneSettings: bibles.map(bible => ({

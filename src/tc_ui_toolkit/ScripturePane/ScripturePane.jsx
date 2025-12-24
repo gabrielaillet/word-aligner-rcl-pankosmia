@@ -17,7 +17,7 @@ const scripturePaneStyles = {
   container: {
     flex: 1,
     height: '100%',
-    margin: '10px',
+    margin: '0 10px 10px 10px', 
     boxShadow: '0 3px 10px var(--background-color)',
     borderRadius: '2px',
     overflow: 'auto',

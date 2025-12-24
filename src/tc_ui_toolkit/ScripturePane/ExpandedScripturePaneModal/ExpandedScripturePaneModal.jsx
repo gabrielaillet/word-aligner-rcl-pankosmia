@@ -123,7 +123,7 @@ function ExpandedScripturePaneModal({
     }
 
     const { chapter, verse } = verseTextReference;
-
+    console.log(chapter,verse)
     if (typeof editTargetVerse === 'function') {
       editTargetVerse(chapter, verse, originalVerse, newVerse, reasons);
     } else {
@@ -137,7 +137,7 @@ function ExpandedScripturePaneModal({
   }
 
   const fontClass = getFontClassName(targetLanguageFont);
-
+  console.log(bibles)
   return (
     <Dialog
       open={show}

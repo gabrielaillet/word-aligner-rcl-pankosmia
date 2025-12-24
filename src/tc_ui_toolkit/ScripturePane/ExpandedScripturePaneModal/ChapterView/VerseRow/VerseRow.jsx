@@ -32,7 +32,6 @@ class VerseRow extends Component {
       onEditTargetVerse(bibleId, chapter, verse, verseText);
     }
   }
-
   render() {
     const {
       bibles,
@@ -78,23 +77,23 @@ class VerseRow extends Component {
           let verseLabel = '';
           let verseData = '';
           let blankVerse = false;
+          console.log(bible)
 
           if (bible) {
+            console.log('------------------------------')
             const verseDataFromBible = getVerseDataFromBible(bible, chapter, currentVerseNumber);
+            console.log(verseDataFromBible)
             verseData = verseDataFromBible.verseData;
             verseLabel = verseDataFromBible.verseLabel;
             const { isVerseSpan, isFirstVerse } = isVerseInSpan(verseLabel, currentVerseNumber);
             blankVerse = isVerseSpan && !isFirstVerse;
             verseText = verseData;
           }
-
           let colStyle = {
-            minWidth: '240px',
-            alignItems: 'stretch',
+            flex: 1,
             padding: '10px',
-            paddingTop: '20px',
             borderRight: '1px solid var(--border-color)',
-          };
+          }
           const isTargetBible = bibleId === 'targetBible';
           let fontClass = '';
           let showUsfm = false;
