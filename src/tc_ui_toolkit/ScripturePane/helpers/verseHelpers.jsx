@@ -335,7 +335,6 @@ export function verseArray(
  */
 export function getVerseSpanRange(verseSpan) {
   let [low, high] = verseSpan.split('-')
-  console.log(low, high)
   if (low && high) {
     low = parseInt(low, 10)
     high = parseInt(high, 10)
@@ -440,14 +439,11 @@ export function getBibleObject(bibleList) {
 export function getVerseDataFromBible(bible, chapter, verse) {
   let verseData = null
   let verseLabel = null
-  console.log(bible, chapter, verse)
 
   try {
     const chapterData = bible[chapter]
-    console.log('chapter')
     if (chapterData) {
       verseData = chapterData[verse]
-      console.log(verseData)
 
       if (verseData) {
         verseLabel = verse
@@ -457,16 +453,23 @@ export function getVerseDataFromBible(bible, chapter, verse) {
         if (isVerseSpan(verse)) {
           const { low, high } = getVerseSpanRange(verse)
           for (let i = low; i <= high; i++) {
-            console.log(i)
             let data = getVerseDataFromBible(bible, chapter, i)
-            console.log(data)
             if (isVerseSpan(data.verseLabel)) {
               i = parseInt(data.verseLabel.split('-')[1]) - 1
             }
             if (!verseData) {
-              verseData = data.verseData
+              verseData = {
+                ...data.verseData,
+                verseObjects: [...(data.verseData?.verseObjects || [])],
+              }
             } else {
-              verseData.verseObjects.push(...data.verseData.verseObjects)
+              verseData = {
+                ...verseData,
+                verseObjects: [
+                  ...(verseData.verseObjects || []),
+                  ...(data.verseData?.verseObjects || []),
+                ],
+              }
             }
           }
         } else {

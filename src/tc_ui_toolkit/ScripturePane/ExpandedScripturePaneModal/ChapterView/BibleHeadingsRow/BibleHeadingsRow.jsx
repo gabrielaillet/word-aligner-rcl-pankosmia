@@ -3,14 +3,6 @@ import PropTypes from 'prop-types';
 import { Col, Row } from 'react-bootstrap';
 import { getBibleElement } from '../../../helpers/verseHelpers';
 
-const rowContainerStyles = {
-  display: 'flex',
-  height: '70px',
-  margin: 0,
-  marginRight: '12px',
-  backgroundColor: 'var(--reverse-color)',
-  minWidth: '500px',
-};
 
 const rowStyle = {
   display: 'flex',
@@ -60,11 +52,19 @@ class BibleHeadingsRow extends Component {
       }
 
       const colStyle = {
-        minWidth: '240px', alignItems: 'stretch', padding: '10px', fontSize: '16px', fontWeight: 'bold',
-        color: 'var(--text-color-dark)', borderRight: '1px solid var(--border-color)',
-        borderBottom: '3px solid var(--border-color)', direction: dir,
-        overflowX: 'hidden', overflowY: 'auto', overflowWrap: 'break-word',
-      };
+        alignItems: 'stretch',
+        padding: '10px',
+        fontSize: '16px',
+        fontWeight: 'bold',
+        flex: '1 1 0%',
+        color: 'var(--text-color-dark)',
+        borderRight: '1px solid var(--border-color)',
+        borderBottom: '3px solid var(--border-color)',
+        direction: dir,
+        overflowX: 'hidden',
+        overflowY: 'auto',
+        overflowWrap: 'break-word',
+      }
 
       bibleHeadings.push(
         <Col key={index} md={4} sm={4} xs={4} lg={4} style={colStyle} >
@@ -74,7 +74,7 @@ class BibleHeadingsRow extends Component {
     }
 
     return (
-      <Row style={{...rowContainerStyles, ...rowStyle}}>
+      <Row style={rowStyle}>
         {bibleHeadings}
       </Row>
     );

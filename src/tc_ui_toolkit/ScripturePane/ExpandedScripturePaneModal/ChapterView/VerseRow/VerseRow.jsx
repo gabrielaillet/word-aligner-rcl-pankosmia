@@ -77,12 +77,9 @@ class VerseRow extends Component {
           let verseLabel = '';
           let verseData = '';
           let blankVerse = false;
-          console.log(bible)
 
           if (bible) {
-            console.log('------------------------------')
             const verseDataFromBible = getVerseDataFromBible(bible, chapter, currentVerseNumber);
-            console.log(verseDataFromBible)
             verseData = verseDataFromBible.verseData;
             verseLabel = verseDataFromBible.verseLabel;
             const { isVerseSpan, isFirstVerse } = isVerseInSpan(verseLabel, currentVerseNumber);

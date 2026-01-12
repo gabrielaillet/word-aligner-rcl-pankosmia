@@ -65,7 +65,6 @@ class ChapterView extends Component {
 
     const languageID = 'en'
     const bookID = 'ult'
-    console.log(bibles)
     let key
     for (let [key2, value] of Object.entries(bibles)) {
       if (Object.keys(value).some(e => e === 'targetBible')) {
@@ -75,10 +74,8 @@ class ChapterView extends Component {
     }
 
     const bible = getBibleElement(bibles, key, 'targetBible')
-    console.log(bible)
 
     const verseNumbers = Object.keys(bible[chapter])
-    console.log(verseNumbers)
 
     const { manifest: projectManifest } = projectDetailsReducer
     const targetLanguageFont = projectManifest.projectFont || ''
@@ -108,7 +105,6 @@ class ChapterView extends Component {
       //   verseNumbers.splice(frontIdx)
       //   verseNumbers.unshift(front)
       // }
-      console.log(verseNumbers)
       for (let i = 0, len = verseNumbers.length; i < len; i++) {
         const verseNumber = verseNumbers[i]
         const { verseLabel } = getVerseDataFromBible(bible, chapter, verse)

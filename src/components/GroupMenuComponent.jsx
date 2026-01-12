@@ -59,6 +59,7 @@ export function GroupMenuComponent({
       itemState = {}
     }
     const title = getReferenceStr(chapter, verse);
+    console.log(itemState)
     return {
       ...item,
       title,
@@ -116,7 +117,7 @@ export function GroupMenuComponent({
 
   const statusIcons = [
     {
-      key: 'invalidated',
+      key: 'invalid',
       icon: <InvalidatedIcon style={{ color: 'white' }} />,
     },
     {

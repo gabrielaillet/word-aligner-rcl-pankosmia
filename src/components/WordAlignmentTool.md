@@ -106,17 +106,7 @@ const App = () => {
   };
 
 
-  /**
-   * Displays a popover with word details when a user clicks on a word
-   * @param {Component} PopoverTitle - The component to use as the popover title
-   * @param {Object} wordDetails - Details about the clicked word
-   * @param {Object} positionCoord - Coordinates for positioning the popover
-   * @param {Object} rawData - Raw data about the clicked word
-   */
-  const showPopover = (PopoverTitle, wordDetails, positionCoord, rawData) => {
-    console.log(`showPopover()`, rawData)
-    window.prompt(`User clicked on ${JSON.stringify(rawData)}`)
-  };
+
 
   /**
    * Loads lexicon data for a specified lexicon ID
@@ -267,7 +257,6 @@ const App = () => {
           loadLexiconEntry={loadLexiconEntry}
           saveNewAlignments={saveNewAlignments}
           saveToolSettings={saveToolSettings}
-          showPopover={showPopover}
           sourceBook={sourceBook}
           sourceLanguage={sourceLanguage}
           styles={{ maxHeight: '800px', overflowY: 'auto' }}

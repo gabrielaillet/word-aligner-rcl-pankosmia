@@ -17,7 +17,7 @@ import isEqual from 'deep-equal'
 import { getVerseUSFM } from '../helpers/groupDataHelpers'
 import MAPControls from './MAPControls'
 import { usfmVerseToJson } from '../helpers/usfmHelpers'
-
+import PopoverContainer from '../containers/PopoverContainer'
 const lexiconCache_ = {}
 const localStyles = {
   container: {
@@ -136,7 +136,6 @@ const WordAlignmentTool = ({
   loadLexiconEntry,
   saveNewAlignments,
   setToolSettings,
-  showPopover = null,
   sourceBook,
   sourceLanguage,
   sourceLanguageFont = '',
@@ -151,7 +150,26 @@ const WordAlignmentTool = ({
   const [currentContextId, setCurrentContextId] = useState(contextId)
   const [alignmentData, setAlignmentData] = useState({})
   const [groupsMenuData, setGroupsMenuData] = useState({})
-
+  const [state, setState] = useState({})
+  const { popoverProps } = state
+  const showPopover = (title, bodyText, positionCoord) => {
+    setState({
+      popoverProps: {
+        popoverVisibility: true,
+        title,
+        bodyText,
+        positionCoord,
+        onClosePopover: () => onClosePopover(),
+      },
+    })
+  }
+  const onClosePopover = () => {
+    setState({
+      popoverProps: {
+        popoverVisibility: false,
+      },
+    })
+  }
   const { paneSettings, paneKeySettings, toolsSettings, manifest } =
     initialSettings
   const { targetWords, verseAlignments } = alignmentData
@@ -334,7 +352,6 @@ const WordAlignmentTool = ({
       verseAlignments,
       targetVerseUSFM
     )
-    console.log(verseUsfm)
     const alignmentComplete = AlignmentHelpers.areAlgnmentsComplete(
       targetWords,
       verseAlignments
@@ -377,7 +394,6 @@ const WordAlignmentTool = ({
     console.log('handleSaveAlignments')
     const ref = currentContextId?.reference
     // get initial bible text
-    console.log(currentContextId, targetBook)
     const targetVerseUSFM_ = getVerseUSFM(targetBook, ref.chapter, ref.verse)
     // apply new alignments to original verse text
     const targetVerseUSFM = addAlignmentsToVerseUSFM(
@@ -582,6 +598,9 @@ const WordAlignmentTool = ({
               />
             </div>
           </div>
+          {popoverProps?.popoverVisibility && (
+            <PopoverContainer {...popoverProps} />
+          )}
         </div>
       ) : (
         'Waiting for Data'
@@ -605,7 +624,6 @@ WordAlignmentTool.propTypes = {
   loadLexiconEntry: PropTypes.func.isRequired,
   saveNewAlignments: PropTypes.func,
   saveToolSettings: PropTypes.func.isRequired,
-  showPopover: PropTypes.func.isRequired,
   sourceBook: PropTypes.object,
   sourceLanguage: PropTypes.string.isRequired,
   sourceLanguageFont: PropTypes.string,
